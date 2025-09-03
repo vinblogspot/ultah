@@ -1,0 +1,216 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" />
+  <title>Selamat Ulang Tahun, Sherlin!</title>
+  <style>
+    :root{
+      --accent:#FF6B9C;
+      --accent2:#FFD166;
+      --bg:#FFF6FA;
+      --card:#ffffff;
+      --dark:#2b2b2b;
+    }
+    html,body{height:100%;margin:0;font-family:'Poppins',system-ui,-apple-system,Segoe UI,Roboto,'Helvetica Neue',Arial}
+    body{background:linear-gradient(135deg,#FFF6FA 0%, #FFEFF4 100%);display:flex;align-items:center;justify-content:center;padding:12px;overflow-x:hidden}
+
+    .stage{width:100%;max-width:980px;background:var(--card);border-radius:28px;box-shadow:0 14px 40px rgba(11,18,34,0.12);overflow:hidden;position:relative;animation:fadeIn 1s ease-in-out}
+    header{padding:24px;background:linear-gradient(90deg, var(--accent) 0%, var(--accent2) 100%);display:flex;gap:16px;align-items:center;color:white;position:relative;overflow:hidden;flex-wrap:wrap}
+    header::after{content:"";position:absolute;inset:0;background:url('https://www.transparenttextures.com/patterns/stardust.png');opacity:0.2}
+    .avatar{flex-shrink:0;width:80px;height:80px;border-radius:20px;background:linear-gradient(135deg,var(--accent),#FFD6E0);display:flex;align-items:center;justify-content:center;font-size:34px;color:white;font-weight:700;box-shadow:0 6px 18px rgba(255,107,107,0.25)}
+    .meta h1{margin:0;font-size:22px;line-height:1.3}
+    .meta p{margin:4px 0 0 0;font-size:14px}
+
+    .hero{display:grid;grid-template-columns:1fr 420px;gap:24px;padding:28px}
+    .greeting{align-self:center;animation:slideUp 1.2s ease}
+    .greeting h2{font-size:30px;margin:0 0 10px 0;color:var(--accent)}
+    .greeting p{margin:0 0 18px 0;color:#333;font-size:15px;line-height:1.6}
+    .cake{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+    .button{background:var(--accent);color:white;padding:12px 16px;border-radius:12px;border:0;font-weight:600;cursor:pointer;box-shadow:0 6px 14px rgba(255,107,107,0.22);transition:transform 0.2s;flex:1;text-align:center;min-width:120px}
+    .button:hover{transform:scale(1.05)}
+    .mute{background:white;color:var(--accent);border:2px solid var(--accent);padding:10px 14px;border-radius:12px;cursor:pointer;transition:all 0.2s;flex:1;text-align:center;min-width:120px}
+    .mute:hover{background:var(--accent);color:white}
+
+    .card-right{background:linear-gradient(180deg, #fff 0%, #fffefe 100%);border-radius:16px;padding:20px;height:100%;display:flex;flex-direction:column;justify-content:center;align-items:center;box-shadow:inset 0 2px 0 rgba(0,0,0,0.03);animation:fadeIn 1.6s ease}
+    .big-name{font-size:22px;font-weight:700;margin-bottom:6px;text-align:center;color:var(--dark)}
+    .detail{color:#666;margin:3px 0;font-size:14px;text-align:center}
+    .card-right .heart{font-size:20px;margin-top:10px;animation:pulse 1.2s infinite}
+
+    footer{padding:14px 18px;color:#666;font-size:12px;border-top:1px solid rgba(20,20,20,0.05);display:flex;justify-content:space-between;align-items:center;background:#fff;flex-wrap:wrap;gap:6px}
+
+    .balloons{position:absolute;left:0;top:0;right:0;bottom:0;pointer-events:none;overflow:hidden}
+    .balloon{position:absolute;border-radius:50%;opacity:0.92;box-shadow:inset -4px -8px rgba(0,0,0,0.1)}
+
+    @keyframes fadeIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
+    @keyframes slideUp{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:none}}
+    @keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.2)}}
+
+    @media (max-width:880px){
+      .hero{grid-template-columns:1fr;gap:20px;padding:20px}
+      .avatar{width:70px;height:70px;font-size:26px}
+      .meta h1{font-size:20px}
+      .greeting h2{font-size:26px}
+      .card-right{padding:16px}
+    }
+
+    @media (max-width:500px){
+      body{padding:8px}
+      .button,.mute{min-width:100px;font-size:14px;padding:10px 12px}
+      .big-name{font-size:20px}
+      .detail{font-size:13px}
+    }
+  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="stage">
+    <header>
+      <div class="avatar">S</div>
+      <div class="meta">
+        <h1>Untuk Sherlin Setia Murni Waruwu</h1>
+        <p>04 September 2025 · 19 tahun</p>
+      </div>
+    </header>
+
+    <section class="hero">
+      <div class="greeting">
+        <h2>Selamat Ulang Tahun, Sherlin! 🎉</h2>
+        <p>Semoga semua harimu selalu penuh tawa, cinta, dan kejutan manis. Terima kasih telah menjadi cahaya yang membuat hari-hari terasa istimewa.</p>
+
+        <div class="cake">
+          <button class="button" id="showMessage">🎁 Buka Kejutan</button>
+          <button class="mute" id="toggleMusic">🎶 Putar Musik</button>
+        </div>
+
+        <!-- Bagian kejutan -->
+        <div id="surprise" style="margin-top:20px;display:none;text-align:center;">
+          <div style="background:linear-gradient(120deg,#FFF0F6,#FFF7FA);padding:18px;border-radius:14px;box-shadow:0 12px 30px rgba(0,0,0,0.08);animation:fadeIn 1s ease;display:inline-block;">
+            <h3 style="margin:0 0 8px 0;color:var(--accent)">Untukmu, Sherlin 💖</h3>
+            <p style="margin:0 0 12px 0;color:#444;line-height:1.6;font-size:14px">Di hari yang spesial ini aku harap impianmu satu-persatu jadi nyata. Nikmati hari ini, dan terimalah pelukan serta doa terbaik dariku.</p>
+            <!-- Foto muncul di sini -->
+            <img src="gambar.jpg" alt="Foto Kejutan" style="max-width:100%;border-radius:16px;box-shadow:0 10px 24px rgba(0,0,0,0.15)">
+          </div>
+        </div>
+      </div>
+
+      <aside class="card-right">
+        <div class="big-name">Sherlin Setia Murni Waruwu</div>
+        <div class="detail">Tanggal lahir: 04 September 2025</div>
+        <div class="detail">Umur: 19 tahun</div>
+        <div class="heart">❤️</div>
+        <div style="font-size:13px;text-align:center;margin-top:8px;">Kirimkan senyumanmu pada hari ini — aku sayang kamu</div>
+      </aside>
+    </section>
+
+    <footer>
+      <div>Surprise by: Kamu</div>
+      <div>04-09-2025 · 19</div>
+    </footer>
+
+    <div class="balloons" id="balloons"></div>
+    <canvas id="confettiCanvas" style="position:absolute;left:0;top:0;pointer-events:none;width:100%;height:100%;"></canvas>
+
+    <!-- Audio file lokal -->
+    <audio id="bgmusic" src="musik.mp3" loop></audio>
+  </div>
+
+  <script>
+    const btn = document.getElementById('showMessage');
+    const surprise = document.getElementById('surprise');
+    const balloonsWrap = document.getElementById('balloons');
+    const toggleMusic = document.getElementById('toggleMusic');
+    const bgmusic = document.getElementById('bgmusic');
+    let musicOn = false;
+
+    btn.addEventListener('click', ()=>{
+      surprise.style.display = 'block';
+      btn.textContent = '✨ Dibuka!';
+      startConfetti();
+      launchBalloons();
+    });
+
+    toggleMusic.addEventListener('click', ()=>{
+      if(!musicOn){
+        bgmusic.play();
+        toggleMusic.textContent = '🎵 Musik Diputar';
+        musicOn = true;
+      } else {
+        bgmusic.pause();
+        toggleMusic.textContent = '🎶 Putar Musik';
+        musicOn = false;
+      }
+    });
+
+    function launchBalloons(){
+      for(let i=0;i<12;i++){
+        const b = document.createElement('div');
+        b.className='balloon';
+        b.style.left = Math.random()*100 + '%';
+        b.style.bottom = '-120px';
+        const size = 30 + Math.random()*60;
+        b.style.width = size+'px';
+        b.style.height = size*1.3+'px';
+        const hue = Math.floor(Math.random()*360);
+        b.style.background = `radial-gradient(circle at 30% 30%, hsl(${hue} 90% 70%), hsl(${(hue+40)%360} 80% 60%))`;
+        b.style.transition = `transform ${6+Math.random()*6}s linear, bottom ${6+Math.random()*6}s linear`;
+        balloonsWrap.appendChild(b);
+        setTimeout(()=>{
+          b.style.bottom = '110%';
+          b.style.transform = `translateX(${(Math.random()-0.5)*200}px) rotate(${Math.random()*120-60}deg)`;
+        }, 100 + i*120);
+        setTimeout(()=>{ b.remove() }, 14000);
+      }
+    }
+
+    const canvas = document.getElementById('confettiCanvas');
+    const ctx = canvas.getContext('2d');
+    let W, H, confettis = [];
+
+    function resize(){
+      W = canvas.width = canvas.offsetWidth;
+      H = canvas.height = canvas.offsetHeight;
+    }
+    window.addEventListener('resize', resize);
+    resize();
+
+    function Confetto(){
+      this.x = Math.random()*W;
+      this.y = -10;
+      this.size = 6 + Math.random()*8;
+      this.speedY = 2 + Math.random()*4;
+      this.speedX = Math.random()*6-3;
+      this.tilt = Math.random()*10-5;
+      this.color = `hsl(${Math.floor(Math.random()*360)} 80% 60%)`;
+    }
+
+    Confetto.prototype.update = function(){
+      this.x += this.speedX;
+      this.y += this.speedY;
+      this.tilt += 0.1;
+      if(this.y > H+20) this.y = -10;
+    }
+    Confetto.prototype.draw = function(){
+      ctx.save();
+      ctx.translate(this.x,this.y);
+      ctx.rotate(this.tilt*0.03);
+      ctx.fillStyle = this.color;
+      ctx.fillRect(-this.size/2,-this.size/2,this.size,this.size*0.6);
+      ctx.restore();
+    }
+
+    function startConfetti(){
+      confettis = [];
+      for(let i=0;i<120;i++) confettis.push(new Confetto());
+      runConfetti();
+      setTimeout(()=>{ confettis = [] }, 9000);
+    }
+
+    function runConfetti(){
+      ctx.clearRect(0,0,W,H);
+      confettis.forEach(c=>{ c.update(); c.draw(); });
+      if(confettis.length) requestAnimationFrame(runConfetti);
+    }
+  </script>
+</body>
+</html>
